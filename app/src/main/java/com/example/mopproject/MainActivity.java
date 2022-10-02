@@ -15,7 +15,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
-    LoginFragment loginFragment;
     HomeFragment homeFragment;
     ProfileFragment profileFragment;
 
@@ -24,19 +23,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        loginFragment = new LoginFragment();
         homeFragment = new HomeFragment();
         profileFragment = new ProfileFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.login, loginFragment).commit();
+//        getSupportFragmentManager().beginTransaction().replace(R.id.login, homeFragment).commit();
 
         NavigationBarView navigationBarView = findViewById(R.id.bottomNavigationView);
         navigationBarView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
-                    case R.id.tab_login:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.login, loginFragment).commit();
-                        return true;
                     case R.id.tab_home:
                         getSupportFragmentManager().beginTransaction().replace(R.id.login, homeFragment).commit();
                         return true;
@@ -47,13 +42,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        Button btnJoinmembership = (Button) findViewById(R.id.btnJoinmembership);
-//        btnJoinmembership.setOnClickListener(new View.OnClickListener(){
-//            public void onClick(View v){
-//                Intent intent = new Intent(getApplicationContext(), JoinmembershipActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        Button btnJoinmembership = (Button) findViewById(R.id.btnJoinmembership);
+        btnJoinmembership.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent intent = new Intent(getApplicationContext(), JoinmembershipActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }
