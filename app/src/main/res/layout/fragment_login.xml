@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/login"
+        android:padding="50dp">
+
+        <TextView
+            android:id="@+id/Hello"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="200dp"
+            android:text="Hello!"
+            android:textSize="50dp"/>
+
+        <EditText
+            android:layout_marginTop="100dp"
+            android:id="@+id/loginId"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Hello"
+            android:layout_centerHorizontal="true"
+            android:hint="아이디"
+            android:textSize="20dp"/>
+
+        <EditText
+            android:id="@+id/loginPassword"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/loginId"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:hint="비밀번호"
+            android:inputType="textPassword"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/centerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/loginPassword"/>
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:text="로그인"
+            android:layout_alignTop="@id/centerText"
+            android:layout_alignRight="@+id/centerText"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"/>
+        <Button
+            android:id="@+id/btnJoinmembership"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:text="회원가입"
+            android:layout_alignTop="@+id/btnLogin"
+            android:layout_alignLeft="@+id/centerText"
+            android:layout_marginLeft="10dp"
+            />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
