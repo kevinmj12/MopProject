@@ -20,9 +20,10 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
     HomeFragment homeFragment;
-    LoginFragment loginFragment;
-    ProfileFragment profileFragment;
+        ProfileFragment profileFragment;
     boolean isLogin = false;
+
+
 
 
 
@@ -32,11 +33,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         homeFragment = new HomeFragment();
-        loginFragment = new LoginFragment();
         profileFragment = new ProfileFragment();
 
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.login, loginFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.login, homeFragment).commit();
+
+        Intent loginIntent = new Intent(getApplicationContext(), MainLogin.class);
+        startActivity(loginIntent);
+
 
         NavigationBarView navigationBarView = findViewById(R.id.bottomNavigationView);
         navigationBarView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -46,24 +50,23 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.tab_home:
                         getSupportFragmentManager().beginTransaction().replace(R.id.login, homeFragment).commit();
                         return true;
-                    case R.id.tab_login:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.login, loginFragment).commit();
-                        return true;
                     case R.id.tab_profile:
                         if (isLogin){
-                            getSupportFragmentManager().beginTransaction().replace(R.id.login, loginFragment).commit();
+                            getSupportFragmentManager().beginTransaction().replace(R.id.login, profileFragment).commit();
                             return true;
                         }
                         else{
                             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                             builder.setMessage("로그인이 필요합니다").setPositiveButton("로그인", new DialogInterface.OnClickListener(){
                                 public void onClick(DialogInterface dialog, int whichButton){
-                                    getSupportFragmentManager().beginTransaction().replace(R.id.login, loginFragment).commit();
+                                    Intent intent = new Intent(getApplicationContext(), MainLogin.class);
+                                    startActivity(intent);
                                 }
                             }).setNegativeButton("회원가입", new DialogInterface.OnClickListener(){
                                 public void onClick(DialogInterface dialog, int whichButton){
                                     Intent intent = new Intent(getApplicationContext(), JoinmembershipActivity.class);
                                     startActivity(intent);
+
                                 }
                             }).setNeutralButton("확인", new DialogInterface.OnClickListener(){
                                 public void onClick(DialogInterface dialog, int whichButton){
@@ -78,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
 
 
     }

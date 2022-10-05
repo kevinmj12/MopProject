@@ -27,6 +27,7 @@
         </activity>
         <activity android:name=".JoinmembershipActivity" android:label="회원가입"/>
         <activity android:name=".MainActivity"/>
+        <activity android:name=".MainLogin" android:label="로그인"/>
     </application>
 
 </manifest>
