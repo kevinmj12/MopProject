@@ -181,12 +181,22 @@
             android:layout_height="50dp"
             android:text="개인정보 사용 약관 ......"/>
 
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_gravity="right"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="동의합니다" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_marginLeft="110dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="동의하지 않습니다"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="동의합니다"/>
+        </LinearLayout>
+
 
         <Button
             android:id="@+id/btnJoin"

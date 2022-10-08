@@ -90,8 +90,8 @@ public class JoinmembershipActivity extends AppCompatActivity {
 //        button
         btnJmFineId = (Button) findViewById(R.id.btnJmFineId);
         btnJoin = (Button) findViewById(R.id.btnJoin);
-//        checkbox
-        checkBox =(CheckBox) findViewById(R.id.checkBox);
+//        radioButton
+
 //        preference, membersCount
         while (true){
             jmSpref = getSharedPreferences("joinmembership"+Integer.toString(membersCount), Activity.MODE_PRIVATE);

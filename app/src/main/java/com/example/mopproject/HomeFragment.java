@@ -1,5 +1,8 @@
 package com.example.mopproject;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -59,6 +62,16 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+//
+//        Bundle bundle = getArguments();
+//        int userNumber = bundle.getInt("userNumber");
+//
+//        SharedPreferences spref = this.getActivity().getSharedPreferences("joinmembership"+Integer.toString(userNumber), Activity.MODE_PRIVATE);
+//        String name = spref.getString("name", "");
+//        String phone = spref.getString("phone", "");
+//        String address = spref.getString("address", "");
+//        String birthday = spref.getString("birthday", "");
+
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 }

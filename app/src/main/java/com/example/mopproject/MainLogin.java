@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -89,25 +90,24 @@ public class MainLogin extends AppCompatActivity{
                     else if (membersSpref.getString("id", "").equals(dataId)){
                         if (membersSpref.getString("pw", "").equals(dataPw)) {
                             successLogin = true;
-                            finish();
+                            Toast.makeText(getApplicationContext(), "로그인 되었습니다", Toast.LENGTH_SHORT).show();
+//                            mainLogin에 로그인 성공 사실과 유저 번호 전달
+                            Intent intent = new Intent(MainLogin.this, MainActivity.class);
+                            intent.putExtra("successLogin", successLogin);
+
+
+                            ProfileFragment profileFragment = new ProfileFragment();
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("userNumber", cnt);
+                            profileFragment.setArguments(bundle);
+
+                            startActivity(intent);
                             break;
                         }
                     }
-
                 }
-
             }
         });
     }
-//
-//    @Override
-//    public void onClick(View view){
-//        String dataId = loginId.getText().toString();
-//        String dataPw = loginPw.getText().toString();
-//        if (view.getId() == R.id.btnLogin){
-//            editor.putString("loginId", dataId);
-//            editor.putString("loginPw", dataPw);
-//            editor.commit();
-//        }
-//}
+
 }

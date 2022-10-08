@@ -12,11 +12,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.content.DialogInterface;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+
+import org.w3c.dom.Text;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -36,9 +39,13 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.login, homeFragment).commit();
 
-        Intent loginIntent = new Intent(getApplicationContext(), MainLogin.class);
-        startActivity(loginIntent);
+        Intent getIntent = getIntent();
+        isLogin = getIntent.getBooleanExtra("successLogin", false);
 
+        Intent loginIntent = new Intent(getApplicationContext(), MainLogin.class);
+        if (!isLogin){
+            startActivity(loginIntent);
+        }
 
         NavigationBarView navigationBarView = findViewById(R.id.bottomNavigationView);
         navigationBarView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
