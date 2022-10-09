@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.security.MessageDigest;
 
@@ -22,6 +23,7 @@ public class MainLogin extends AppCompatActivity{
     Button btnLogin, btnJoinmembership, btnGoHome;
     EditText loginId, loginPw;
     boolean successLogin = false;
+    ProfileFragment profileFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,14 +93,14 @@ public class MainLogin extends AppCompatActivity{
                         if (membersSpref.getString("pw", "").equals(dataPw)) {
                             successLogin = true;
                             Toast.makeText(getApplicationContext(), "로그인 되었습니다", Toast.LENGTH_SHORT).show();
-//                            mainLogin에 로그인 성공 사실과 유저 번호 전달
+//                            mainLogin에 로그인 성공 사실과 유저 정보 전달
                             Intent intent = new Intent(MainLogin.this, MainActivity.class);
                             intent.putExtra("successLogin", successLogin);
 
-
-                            ProfileFragment profileFragment = new ProfileFragment();
                             Bundle bundle = new Bundle();
                             bundle.putInt("userNumber", cnt);
+
+                            profileFragment = new ProfileFragment();
                             profileFragment.setArguments(bundle);
 
                             startActivity(intent);

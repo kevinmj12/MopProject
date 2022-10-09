@@ -1,5 +1,7 @@
 package com.example.mopproject;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +62,28 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        TextView profileName = (TextView) view.findViewById(R.id.profileName);
+        TextView profileBirthday = (TextView) view.findViewById(R.id.profileBirthday);
+        TextView profileAddress = (TextView) view.findViewById(R.id.profileAddress);
+        TextView profilePhone = (TextView) view.findViewById(R.id.profilePhone);
+
+
+        int userNumber = -3;
+        if (getArguments() != null){
+            userNumber = getArguments().getInt("userNumber", -1);
+        }
+
+        profileName.setText(Integer.toString(userNumber));
+
+
+
+//        profileName.setText(strName);
+//        profileBirthday.setText(birthday);
+//        profileAddress.setText(address);
+//        profilePhone.setText(phone);
+
+        return view;
     }
 }
