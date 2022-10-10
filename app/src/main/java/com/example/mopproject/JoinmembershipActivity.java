@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -24,7 +25,7 @@ public class JoinmembershipActivity extends AppCompatActivity {
     EditText jmId, jmPw, jmCheckPw, jmName, jmBirthday, jmPhone, jmAddress;
     TextView textviewFineId, textviewFinePw, textviewCheckPw;
     Button btnJoin, btnJmFineId;
-    CheckBox checkBox;
+    RadioButton radioAccept, radioNotAccept;
     SharedPreferences jmSpref;
     SharedPreferences.Editor jmEditor;
     int membersCount = 0;
@@ -91,6 +92,8 @@ public class JoinmembershipActivity extends AppCompatActivity {
         btnJmFineId = (Button) findViewById(R.id.btnJmFineId);
         btnJoin = (Button) findViewById(R.id.btnJoin);
 //        radioButton
+        radioAccept = (RadioButton) findViewById(R.id.radioAccept);
+        radioNotAccept = (RadioButton) findViewById(R.id.radioNotAccept);
 
 //        preference, membersCount
         while (true){
@@ -284,7 +287,7 @@ public class JoinmembershipActivity extends AppCompatActivity {
                     AlertDialog dialog = builder.create();
                     dialog.show();
                 }
-                else if (!checkBox.isChecked()){
+                else if (!radioAccept.isChecked()){
                     AlertDialog.Builder builder = new AlertDialog.Builder(JoinmembershipActivity.this);
                     builder.setMessage("개인정보 사용 약관에 동의해주세요");
                     builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){

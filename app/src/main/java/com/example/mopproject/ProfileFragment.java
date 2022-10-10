@@ -69,20 +69,20 @@ public class ProfileFragment extends Fragment {
         TextView profileAddress = (TextView) view.findViewById(R.id.profileAddress);
         TextView profilePhone = (TextView) view.findViewById(R.id.profilePhone);
 
+        int userNumber = getArguments().getInt("userNumber");
 
-        int userNumber = -3;
-        if (getArguments() != null){
-            userNumber = getArguments().getInt("userNumber", -1);
-        }
+        SharedPreferences userSpref = this.getActivity().getSharedPreferences("joinmembership"+Integer.toString(userNumber), Context.MODE_PRIVATE);
+        SharedPreferences.Editor userEditor = userSpref.edit();
 
-        profileName.setText(Integer.toString(userNumber));
+        String userBirthday = userSpref.getString("birthday", "");
+        String strBirthday = userBirthday.substring(0,4)+"년 "+userBirthday.substring(4,6)+"월 "+userBirthday.substring(6,8)+"일";
+        String userPhone = userSpref.getString("phone","");
+        String strPhone = userPhone.substring(0,3)+"-"+userPhone.substring(3,7)+"-"+userPhone.substring(7,11);
 
-
-
-//        profileName.setText(strName);
-//        profileBirthday.setText(birthday);
-//        profileAddress.setText(address);
-//        profilePhone.setText(phone);
+        profileName.setText(userSpref.getString("name", "") + " 님");
+        profileBirthday.setText(strBirthday);
+        profileAddress.setText(userSpref.getString("address",""));
+        profilePhone.setText(strPhone);
 
         return view;
     }

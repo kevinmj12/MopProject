@@ -181,21 +181,28 @@
             android:layout_height="50dp"
             android:text="개인정보 사용 약관 ......"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <RadioButton
+                android:id="@+id/radioNotAccept"
                 android:layout_marginLeft="110dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="동의하지 않습니다"/>
+
             <RadioButton
+                android:id="@+id/radioAccept"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="동의합니다"/>
-        </LinearLayout>
+
+        </RadioGroup>
+
+
+
 
 
         <Button

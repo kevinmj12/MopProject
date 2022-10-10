@@ -48,6 +48,9 @@ public class MainLogin extends AppCompatActivity{
         btnGoHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(MainLogin.this, MainActivity.class);
+                intent.putExtra("isStart", false);
+                startActivity(intent);
                 finish();
             }
         });
@@ -96,14 +99,10 @@ public class MainLogin extends AppCompatActivity{
 //                            mainLogin에 로그인 성공 사실과 유저 정보 전달
                             Intent intent = new Intent(MainLogin.this, MainActivity.class);
                             intent.putExtra("successLogin", successLogin);
-
-                            Bundle bundle = new Bundle();
-                            bundle.putInt("userNumber", cnt);
-
-                            profileFragment = new ProfileFragment();
-                            profileFragment.setArguments(bundle);
+                            intent.putExtra("userNumber", cnt);
 
                             startActivity(intent);
+                            finish();
                             break;
                         }
                     }

@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     ProfileFragment profileFragment;
 
     boolean isLogin = false;
+    boolean isStart = true;
+    int userNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +43,17 @@ public class MainActivity extends AppCompatActivity {
 
         Intent getIntent = getIntent();
         isLogin = getIntent.getBooleanExtra("successLogin", false);
+        isStart = getIntent.getBooleanExtra("isStart", true);
+        userNumber = getIntent.getIntExtra("userNumber", -1);
+        Bundle bundle = new Bundle();
+        bundle.putInt("userNumber", userNumber);
+        profileFragment = new ProfileFragment();
+        profileFragment.setArguments(bundle);
 
         Intent loginIntent = new Intent(getApplicationContext(), MainLogin.class);
-        if (!isLogin){
+        if (!isLogin & isStart){
             startActivity(loginIntent);
+            finish();
         }
 
         NavigationBarView navigationBarView = findViewById(R.id.bottomNavigationView);
