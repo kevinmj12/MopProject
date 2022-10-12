@@ -36,7 +36,7 @@ public class JoinmembershipActivity extends AppCompatActivity {
             return false;
         }
         for (int i = 0; i < id.length(); i++){
-            if ('a' <= id.charAt(i) & id.charAt(i) <= 'z'){
+            if (('a' <= id.charAt(i) & id.charAt(i) <= 'z') | ('A' <= id.charAt(i) & id.charAt(i) <= 'Z')){
                 inEng = true;
             }
             else if ('0' <= id.charAt(i) & id.charAt(i) <= '9'){
@@ -55,13 +55,13 @@ public class JoinmembershipActivity extends AppCompatActivity {
             return false;
         }
         for (int i = 0; i < pw.length(); i++){
-            if ('a' <= pw.charAt(i) & pw.charAt(i) <= 'z'){
+            if (('a' <= pw.charAt(i) & pw.charAt(i) <= 'z') | ('A' <= pw.charAt(i) & pw.charAt(i) <= 'Z')){
                 inEng = true;
             }
             else if ('0' <= pw.charAt(i) & pw.charAt(i) <= '9'){
                 inNum = true;
             }
-            else{
+            else {
                 inSpecialLetter = true;
             }
         }
@@ -135,7 +135,6 @@ public class JoinmembershipActivity extends AppCompatActivity {
             }
         });
         TextView testtest = (TextView) findViewById(R.id.testtest);
-        testtest.setText(Integer.toString(membersCount));
 
 //        check pw is satisfied
         jmPw.addTextChangedListener(new TextWatcher() {
