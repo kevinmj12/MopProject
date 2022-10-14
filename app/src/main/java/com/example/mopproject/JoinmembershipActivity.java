@@ -20,6 +20,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.regex.Pattern;
+
 
 public class JoinmembershipActivity extends AppCompatActivity {
     EditText jmId, jmPw, jmCheckPw, jmName, jmBirthday, jmPhone, jmAddress;
@@ -31,7 +33,7 @@ public class JoinmembershipActivity extends AppCompatActivity {
     int membersCount = 0;
     boolean idFine = false, pressIdBtn = false, pwFine = false, checkPwFine = false;
     public static boolean isFineId(String id){
-        boolean inEng = false, inNum = false;
+        boolean inEng = false, inNum = false, inSpecialNumber = false;
         if (id.length() < 6){
             return false;
         }
@@ -42,33 +44,30 @@ public class JoinmembershipActivity extends AppCompatActivity {
             else if ('0' <= id.charAt(i) & id.charAt(i) <= '9'){
                 inNum = true;
             }
+            else{
+                inSpecialNumber = true;
+            }
         }
-        if (inEng & inNum){
+        if (inEng & inNum & !inSpecialNumber){
             return true;
         }
         return false;
     }
 
     public static boolean isFinePw(String pw){
-        boolean inEng = false, inNum = false, inSpecialLetter = false;
+        boolean inEng = false, inNum = false, inSpecialLetter = false, inElseLetter = false;
         if (pw.length() < 6){
             return false;
         }
-        for (int i = 0; i < pw.length(); i++){
-            if (('a' <= pw.charAt(i) & pw.charAt(i) <= 'z') | ('A' <= pw.charAt(i) & pw.charAt(i) <= 'Z')){
-                inEng = true;
-            }
-            else if ('0' <= pw.charAt(i) & pw.charAt(i) <= '9'){
-                inNum = true;
-            }
-            else {
-                inSpecialLetter = true;
-            }
-        }
-        if (inEng & inNum & inSpecialLetter){
+        final String PASSWORD_REGEX = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{6,}$";
+        final Pattern PASSWORD_PATTERN = Pattern.compile(PASSWORD_REGEX);
+
+        if (PASSWORD_PATTERN.matcher(pw).matches()) {
             return true;
         }
-        return false;
+        else {
+            return false;
+        }
     }
 
     @Override
@@ -134,7 +133,21 @@ public class JoinmembershipActivity extends AppCompatActivity {
                 }
             }
         });
-        TextView testtest = (TextView) findViewById(R.id.testtest);
+
+        jmId.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                idFine = false;
+                textviewFineId.setText("ID 중복 확인을 해주세요");
+                textviewFineId.setTextColor(0xFFFF0000);
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
 
 //        check pw is satisfied
         jmPw.addTextChangedListener(new TextWatcher() {
@@ -152,6 +165,18 @@ public class JoinmembershipActivity extends AppCompatActivity {
                     textviewFinePw.setText("6자 이상의 영문, 숫자, 특수문자를 입력해주세요");
                     textviewFinePw.setTextColor(0xFFFF0000);
                     pwFine = false;
+                }
+                if (textviewCheckPw.getText()!="") {
+                    if (jmPw.getText().toString().equals(jmCheckPw.getText().toString())){
+                        textviewCheckPw.setText("비밀번호가 일치합니다");
+                        textviewCheckPw.setTextColor(0xFF0000FF);
+                        checkPwFine = true;
+                    }
+                    else{
+                        textviewCheckPw.setText("비밀번호가 일치하지 않습니다");
+                        textviewCheckPw.setTextColor(0xFFFF0000);
+                        checkPwFine = false;
+                    }
                 }
             }
             @Override
@@ -264,6 +289,7 @@ public class JoinmembershipActivity extends AppCompatActivity {
                     AlertDialog dialog = builder.create();
                     dialog.show();
                 }
+//                else if (isFineBirthday)
                 else if (strPhone.length()!=11){
                     AlertDialog.Builder builder = new AlertDialog.Builder(JoinmembershipActivity.this);
                     builder.setMessage("전화번호 11자리를 입력해주세요");

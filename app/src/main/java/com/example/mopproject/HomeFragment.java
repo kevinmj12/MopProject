@@ -11,14 +11,19 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
+
+import java.sql.Array;
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment {
 
+public class HomeFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -27,6 +32,9 @@ public class HomeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    //SamsungItems
+    ArrayList<SamsungItems> samsungItemsList;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -63,8 +71,22 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        this.InitializeSamsungItems();
 
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        ListView samsungListview = (ListView) view.findViewById(R.id.samsungListView);
+        final MyAdapter myAdapter = new MyAdapter(this, samsungItemsList);
+
+        samsungListview.setAdapter(myAdapter);
+
+        return view;
     }
+    public void InitializeSamsungItems(){
+        samsungItemsList = new ArrayList<SamsungItems>();
+        samsungItemsList.add(new SamsungItems(R.drawable.bespoke_refrigerator, "비스포크 냉장고", "1,859,000원"));
+        samsungItemsList.add(new SamsungItems(R.drawable.bespoke_airconditioner, "비스포크 무풍에어컨", "2,799,000원"));
+        samsungItemsList.add(new SamsungItems(R.drawable.uhdtv, "UHD 214cm 스탠드형 TV", "2,340,000원"));
+    }
+
 }
