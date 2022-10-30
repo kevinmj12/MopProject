@@ -70,6 +70,26 @@ public class JoinmembershipActivity extends AppCompatActivity {
         }
     }
 
+    public static boolean isFineBirthday(String bd){
+        if (bd.length() != 8){
+            return false;
+        }
+        int[] days = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        int year = Integer.parseInt(bd.substring(0, 4));
+        int month = Integer.parseInt(bd.substring(4, 6));
+        int day = Integer.parseInt(bd.substring(6, 8));
+        if (year > 2022){
+            return false;
+        }
+        if (month > 12){
+            return false;
+        }
+        if (day > days[month-1]){
+            return false;
+        }
+        return true;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -278,9 +298,9 @@ public class JoinmembershipActivity extends AppCompatActivity {
                     AlertDialog dialog = builder.create();
                     dialog.show();
                 }
-                else if (strBirthday.length()!=8){
+                else if (!isFineBirthday(strBirthday)){
                     AlertDialog.Builder builder = new AlertDialog.Builder(JoinmembershipActivity.this);
-                    builder.setMessage("생년월일 8자리를 입력해주세요");
+                    builder.setMessage("올바른 생년월일 8자리를 입력해주세요");
                     builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
                         public void onClick(DialogInterface dialog, int whichButton){
                             dialog.cancel();

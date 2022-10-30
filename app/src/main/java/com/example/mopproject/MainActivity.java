@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
         userNumber = getIntent.getIntExtra("userNumber", -1);
         Bundle bundle = new Bundle();
         bundle.putInt("userNumber", userNumber);
-        profileFragment = new ProfileFragment();
         profileFragment.setArguments(bundle);
 
         Intent loginIntent = new Intent(getApplicationContext(), MainLogin.class);

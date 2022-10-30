@@ -87,6 +87,9 @@ public class HomeFragment extends Fragment {
         samsungItemsList.add(new SamsungItems(R.drawable.bespoke_refrigerator, "비스포크 냉장고", "1,859,000원"));
         samsungItemsList.add(new SamsungItems(R.drawable.bespoke_airconditioner, "비스포크 무풍에어컨", "2,799,000원"));
         samsungItemsList.add(new SamsungItems(R.drawable.uhdtv, "UHD 214cm 스탠드형 TV", "2,340,000원"));
+        samsungItemsList.add(new SamsungItems(R.drawable.washingmachine, "그랑데 AI 21kg + 17kg", "1,899,000원"));
+        samsungItemsList.add(new SamsungItems(R.drawable.vacuum, "비스포크 제트 220W", "1,499,000원"));
+
     }
 
 }
