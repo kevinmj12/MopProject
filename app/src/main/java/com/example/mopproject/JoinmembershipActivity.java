@@ -78,13 +78,13 @@ public class JoinmembershipActivity extends AppCompatActivity {
         int year = Integer.parseInt(bd.substring(0, 4));
         int month = Integer.parseInt(bd.substring(4, 6));
         int day = Integer.parseInt(bd.substring(6, 8));
-        if (year > 2022){
+        if (year > 2022 | year < 1900){
             return false;
         }
-        if (month > 12){
+        if (month > 12 | month < 1){
             return false;
         }
-        if (day > days[month-1]){
+        if (day > days[month-1] | day < 1){
             return false;
         }
         return true;
